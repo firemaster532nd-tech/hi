@@ -160,12 +160,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 123, 255, 0.85) 0%,
-        rgba(102, 126, 234, 0.75) 50%,
-        rgba(118, 75, 162, 0.85) 100%
-    );
+    background: rgba(255, 255, 255, 0.85);
 }
 
 /* 슬라이드 인디케이터 */
@@ -183,24 +178,26 @@ body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 123, 255, 0.3);
     cursor: pointer;
     transition: var(--transition);
+    border: 2px solid var(--primary-color);
 }
 
 .indicator.active {
-    background-color: #ffd700;
+    background-color: var(--primary-color);
     transform: scale(1.3);
 }
 
 .indicator:hover {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--primary-color);
+    opacity: 0.8;
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
-    color: var(--white-color);
+    color: var(--dark-color);
     text-align: center;
     padding: 2rem 0;
 }
@@ -210,21 +207,23 @@ body {
     font-weight: 900;
     margin-bottom: 1.5rem;
     line-height: 1.2;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
     animation: fadeInUp 1s ease-out;
+    color: var(--dark-color);
 }
 
 .hero-title .highlight {
     display: block;
-    color: #ffd700;
-    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
+    color: var(--primary-color);
+    text-shadow: none;
 }
 
 .hero-description {
     font-size: 1.3rem;
     margin-bottom: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
     animation: fadeInUp 1s ease-out 0.2s both;
+    color: var(--secondary-color);
 }
 
 .hero-buttons {
@@ -248,31 +247,31 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
     color: var(--white-color);
-    border-color: var(--accent-color);
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: transparent;
-    border-color: var(--white-color);
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.6);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
 }
 
 .btn-secondary {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: var(--white-color);
-    border-color: var(--white-color);
-    backdrop-filter: blur(10px);
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
-    background-color: var(--white-color);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--white-color);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
 }
 
 .hero-stats {
@@ -288,33 +287,41 @@ body {
 }
 
 .stat-box {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: var(--white-color);
+    border: 2px solid var(--primary-color);
     border-radius: 15px;
     padding: 2rem 2.5rem;
     transition: var(--transition);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.15);
 }
 
 .stat-box:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: var(--primary-color);
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 123, 255, 0.3);
 }
 
 .stat-box h3 {
     font-size: 2.5rem;
     font-weight: 900;
     margin-bottom: 0.5rem;
-    color: #ffd700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.stat-box:hover h3 {
+    color: var(--white-color);
 }
 
 .stat-box p {
     font-size: 1rem;
-    color: var(--white-color);
+    color: var(--secondary-color);
     font-weight: 500;
+    transition: var(--transition);
+}
+
+.stat-box:hover p {
+    color: var(--white-color);
 }
 
 /* 애니메이션 */
