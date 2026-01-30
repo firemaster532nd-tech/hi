@@ -989,8 +989,10 @@ section {
     visibility: hidden;
     transform: translateY(-10px);
     pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    transition-delay: 2s;
+    transition: opacity 0.2s ease 0.5s, 
+                visibility 0.2s ease 0.5s, 
+                transform 0.2s ease 0.5s,
+                pointer-events 0s linear 0.7s;
 }
 
 .nav-menu .dropdown:hover .dropdown-menu,
@@ -999,7 +1001,10 @@ section {
     visibility: visible;
     transform: translateY(0);
     pointer-events: auto;
-    transition-delay: 0s;
+    transition: opacity 0.15s ease 0s, 
+                visibility 0.15s ease 0s, 
+                transform 0.15s ease 0s,
+                pointer-events 0s linear 0s;
 }
 
 .nav-menu .dropdown-menu li {
