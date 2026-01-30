@@ -988,7 +988,7 @@ section {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease 0.5s, visibility 0.3s ease 0.5s, transform 0.3s ease 0.5s;
+    transition: opacity 0.3s ease 1s, visibility 0.3s ease 1s, transform 0.3s ease 1s;
     pointer-events: none;
 }
 
