@@ -160,7 +160,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 /* 슬라이드 인디케이터 */
@@ -216,6 +216,13 @@ body {
 .hero-title .highlight {
     display: block;
     color: var(--primary-color);
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9),
+                 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.hero-title .highlight-orange {
+    display: block;
+    color: #ff8c42;
     text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.9),
                  0 0 15px rgba(255, 255, 255, 0.7);
 }
