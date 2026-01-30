@@ -11,9 +11,23 @@ menuToggle.addEventListener('click', () => {
 
 // 메뉴 클릭 시 자동 닫기
 document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        menuToggle.classList.remove('active');
+    link.addEventListener('click', (e) => {
+        // 드롭다운 토글은 제외
+        if (!link.classList.contains('dropdown-toggle')) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    });
+});
+
+// 모바일에서 드롭다운 토글
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window.innerWidth <= 968) {
+            const dropdown = toggle.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
     });
 });
 
