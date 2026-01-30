@@ -56,8 +56,8 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
 // 모바일에서 드롭다운 토글
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
     toggle.addEventListener('click', (e) => {
-        e.preventDefault();
         if (window.innerWidth <= 968) {
+            e.preventDefault();
             const dropdown = toggle.closest('.dropdown');
             dropdown.classList.toggle('active');
         }
