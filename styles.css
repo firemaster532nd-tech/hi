@@ -614,6 +614,15 @@ section {
     width: 100%;
     height: 250px;
     overflow: hidden;
+    position: relative;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
 }
 
 .portfolio-image .image-placeholder {
