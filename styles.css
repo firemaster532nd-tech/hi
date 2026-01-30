@@ -627,8 +627,8 @@ section {
 
 /* 특별 사례: 핵심 시설(조경, 수영장) 강조 */
 .portfolio-image-featured img {
-    object-position: center 55%;
-    transform: scale(1.2);
+    object-position: 50% 50%;
+    transform: scale(1.8);
 }
 
 .portfolio-image .image-placeholder {
