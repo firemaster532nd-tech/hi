@@ -988,7 +988,7 @@ section {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease 2s, visibility 0.3s ease 2s, transform 0.3s ease 2s;
+    transition: opacity 0.3s ease 2s, visibility 0.3s ease 2s, transform 0.3s ease 2s, pointer-events 0s linear 2.3s;
     pointer-events: none;
 }
 
@@ -998,7 +998,7 @@ section {
     visibility: visible;
     transform: translateY(0);
     pointer-events: auto;
-    transition: opacity 0.2s ease 0s, visibility 0.2s ease 0s, transform 0.2s ease 0s;
+    transition: opacity 0.2s ease 0s, visibility 0.2s ease 0s, transform 0.2s ease 0s, pointer-events 0s linear 0s;
 }
 
 .nav-menu .dropdown-menu li {
