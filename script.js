@@ -159,7 +159,7 @@ const heroObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const stats = document.querySelectorAll('.stat-item h3');
             if (stats.length >= 3) {
-                animateValue(stats[0], 0, 20, 2000, '+');
+                animateValue(stats[0], 0, 10, 2000, '+');
                 animateValue(stats[1], 0, 500, 2000, '+');
                 animateValue(stats[2], 0, 100, 2000, '%');
             }
