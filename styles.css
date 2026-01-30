@@ -1315,3 +1315,580 @@ section {
         font-size: 1.5rem;
     }
 }
+
+/* 시공프로세스 페이지 스타일 */
+.process-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.section-title-center {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--secondary-color);
+}
+
+/* 프로세스 플로우차트 */
+.process-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 3rem 0;
+}
+
+.flow-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.flow-number {
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    color: var(--white-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.flow-arrow {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* 상세 프로세스 카드 */
+.process-detail-card {
+    display: grid;
+    grid-template-columns: 80px 1fr 300px;
+    gap: 2rem;
+    background-color: var(--white-color);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.process-detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+}
+
+.process-detail-card.reverse {
+    grid-template-columns: 300px 1fr 80px;
+}
+
+.process-detail-card.reverse::before {
+    left: auto;
+    right: 0;
+}
+
+.process-detail-card.reverse .process-detail-visual {
+    order: -2;
+}
+
+.process-detail-card.reverse .process-detail-content {
+    order: -1;
+}
+
+.process-detail-icon {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.process-detail-icon svg {
+    width: 70px;
+    height: 70px;
+    color: var(--primary-color);
+}
+
+.process-detail-content {
+    min-width: 0;
+}
+
+.process-badge {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.process-detail-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.process-description {
+    color: var(--secondary-color);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.process-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.process-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.process-details ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    color: var(--secondary-color);
+}
+
+.process-details ul li svg {
+    width: 20px;
+    height: 20px;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.process-duration {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    color: var(--dark-color);
+}
+
+.process-highlight {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #e3f2fd;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 4px;
+}
+
+.process-highlight svg {
+    width: 24px;
+    height: 24px;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.process-highlight span {
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+.process-highlight.highlight-success {
+    background-color: #e8f5e9;
+    border-left-color: #2e7d32;
+}
+
+.process-highlight.highlight-success svg {
+    color: #2e7d32;
+}
+
+.process-detail-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visual-placeholder {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.visual-placeholder svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 프로세스 강점 */
+.strength-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.strength-card {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--white-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.strength-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.strength-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.strength-icon svg {
+    width: 30px;
+    height: 30px;
+    color: var(--white-color);
+}
+
+.strength-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.strength-card p {
+    color: var(--secondary-color);
+    line-height: 1.6;
+}
+
+/* CTA 섹션 */
+.cta-section {
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.cta-content h2 {
+    color: var(--white-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    color: var(--white-color);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* 시공사례 페이지 스타일 */
+.portfolio-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+/* 포트폴리오 갤러리 */
+.portfolio-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.portfolio-gallery-item {
+    background-color: var(--white-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.portfolio-gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.portfolio-gallery-item.hidden {
+    display: none;
+}
+
+.gallery-image {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background-color: var(--light-color);
+}
+
+.gallery-image svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-image:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay-content {
+    text-align: center;
+    color: var(--white-color);
+    padding: 2rem;
+}
+
+.gallery-overlay-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.gallery-overlay-content p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.view-details-btn {
+    padding: 0.75rem 2rem;
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.view-details-btn:hover {
+    background-color: var(--white-color);
+    color: var(--accent-color);
+}
+
+.gallery-info {
+    padding: 1.5rem;
+}
+
+.gallery-tag {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.gallery-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.gallery-info p {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.gallery-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* 통계 섹션 */
+.stats-section {
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-card {
+    padding: 2rem;
+    background-color: var(--white-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+}
+
+/* 모달 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--white-color);
+    margin: 3% auto;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 800px;
+    position: relative;
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--dark-color);
+}
+
+/* 반응형 - 프로세스 & 포트폴리오 */
+@media (max-width: 968px) {
+    .process-detail-card,
+    .process-detail-card.reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .process-detail-visual,
+    .process-detail-card.reverse .process-detail-visual {
+        order: 0;
+    }
+
+    .process-detail-content,
+    .process-detail-card.reverse .process-detail-content {
+        order: 0;
+    }
+
+    .process-detail-icon {
+        display: none;
+    }
+
+    .process-flow {
+        flex-direction: column;
+    }
+
+    .flow-arrow {
+        transform: rotate(90deg);
+    }
+
+    .portfolio-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .section-title-center {
+        font-size: 2rem;
+    }
+
+    .cta-content h2 {
+        font-size: 1.75rem;
+    }
+
+    .process-detail-card {
+        padding: 2rem;
+    }
+
+    .strength-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
