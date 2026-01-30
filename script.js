@@ -1,3 +1,36 @@
+// 히어로 슬라이드쇼
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const indicators = document.querySelectorAll('.indicator');
+
+function showSlide(index) {
+    // 모든 슬라이드 비활성화
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => indicator.classList.remove('active'));
+    
+    // 현재 슬라이드 활성화
+    slides[index].classList.add('active');
+    indicators[index].classList.add('active');
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+// 자동 슬라이드 (5초마다)
+if (slides.length > 0) {
+    setInterval(nextSlide, 5000);
+}
+
+// 인디케이터 클릭 이벤트
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+    });
+});
+
 // 모바일 메뉴 토글
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
