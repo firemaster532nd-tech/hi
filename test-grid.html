@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.content-layout { display: grid; grid-template-columns: 1fr 350px; gap: 3rem; border: 2px solid red; }
+.content-main { border: 2px solid blue; min-height: 500px; }
+.sidebar { border: 2px solid green; position: sticky; top: 100px; height: fit-content; }
+</style>
+</head>
+<body>
+<div class='container'>
+<div class='content-layout'>
+  <div class='content-main'>
+    <h2>Content Main (Blue)</h2>
+    <p>This is the main content area.</p>
+    <div style='height: 2000px; background: #f0f0f0;'>Long content...</div>
+  </div>
+  <aside class='sidebar'>
+    <h3>Sidebar (Green)</h3>
+    <p>This sidebar should appear on the right.</p>
+  </aside>
+</div>
+</div>
+</body>
+</html>
