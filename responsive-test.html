@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 테스트 | 내화채움공사</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .device-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .breakpoint-indicator {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border-radius: 5px;
+            background: #e9ecef;
+            font-weight: bold;
+        }
+        .breakpoint-indicator.active {
+            background: #007bff;
+            color: white;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .test-card {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        @media (max-width: 1200px) {
+            .bp-1200 { background: #ffc107; color: black; }
+        }
+        @media (max-width: 1024px) {
+            .bp-1024 { background: #17a2b8; color: white; }
+        }
+        @media (max-width: 768px) {
+            .bp-768 { background: #28a745; color: white; }
+        }
+        @media (max-width: 640px) {
+            .bp-640 { background: #dc3545; color: white; }
+        }
+        @media (max-width: 480px) {
+            .bp-480 { background: #6f42c1; color: white; }
+        }
+        @media (max-width: 375px) {
+            .bp-375 { background: #fd7e14; color: white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center; margin-bottom: 2rem;">📱 반응형 디자인 테스트</h1>
+        
+        <div class="device-info">
+            <h2>현재 활성 브레이크포인트</h2>
+            <div class="breakpoint-indicator bp-1200">Desktop (< 1200px)</div>
+            <div class="breakpoint-indicator bp-1024">Tablet L (< 1024px)</div>
+            <div class="breakpoint-indicator bp-768">Tablet P (< 768px)</div>
+            <div class="breakpoint-indicator bp-640">Mobile L (< 640px)</div>
+            <div class="breakpoint-indicator bp-480">Mobile M (< 480px)</div>
+            <div class="breakpoint-indicator bp-375">Mobile S (< 375px)</div>
+            <p style="margin-top: 1rem; color: #666;">
+                <strong>현재 화면 너비:</strong> <span id="screenWidth">-</span>px
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>📊 통계 카드 테스트 (Stats Grid)</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">경력 (년)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">시공 건수</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">고객 만족도 (%)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">협력 업체</div>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #666;">
+                • Desktop/Tablet: 4열 또는 2열<br>
+                • Mobile: 1열
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>🔘 버튼 테스트</h2>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-outline">Outline Button</button>
+            </div>
+            <p style="margin-top: 1rem; color: #666;">
+                • Mobile: 버튼이 100% 너비로 확장<br>
+                • 최소 터치 영역: 44x44px
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 서비스 카드 테스트</h2>
+            <div class="services-grid-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                    </div>
+                    <h3>덕트(바닥) 내화채움</h3>
+                    <p>바닥 관통부 전문 시공</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                    </div>
+                    <h3>덕트(벽체) 내화채움</h3>
+                    <p>벽체 관통부 전문 시공</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                    </div>
+                    <h3>케이블 트레이</h3>
+                    <p>케이블 관통부 시공</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                        </svg>
+                    </div>
+                    <h3>버스덕트</h3>
+                    <p>버스덕트 내화채움</p>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #666;">
+                • Desktop: 4열<br>
+                • Tablet: 2열<br>
+                • Mobile: 1열
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 테스트 방법</h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <h4>1. 브라우저 크기 조절</h4>
+                    <p>창을 좁히거나 넓혀서 테스트</p>
+                </div>
+                <div class="test-card">
+                    <h4>2. 개발자 도구</h4>
+                    <p>F12 → Device Toolbar (Ctrl+Shift+M)</p>
+                </div>
+                <div class="test-card">
+                    <h4>3. 실제 디바이스</h4>
+                    <p>스마트폰/태블릿에서 직접 접속</p>
+                </div>
+                <div class="test-card">
+                    <h4>4. 회전 테스트</h4>
+                    <p>Portrait ↔ Landscape 전환</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📱 주요 브레이크포인트</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f8f9fa;">
+                        <th style="padding: 1rem; border: 1px solid #dee2e6;">브레이크포인트</th>
+                        <th style="padding: 1rem; border: 1px solid #dee2e6;">화면 크기</th>
+                        <th style="padding: 1rem; border: 1px solid #dee2e6;">디바이스</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">1200px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">< 1200px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">Desktop Small</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">1024px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">< 1024px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">Tablet Landscape (iPad Pro)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">768px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">< 768px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">Tablet Portrait (iPad)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">640px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">< 640px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">Mobile Large</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">480px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">< 480px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">Mobile Medium (iPhone 14/15)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">375px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">< 375px</td>
+                        <td style="padding: 1rem; border: 1px solid #dee2e6;">Mobile Small (iPhone SE)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-section" style="background: #e7f3ff;">
+            <h2>✅ 적용된 최적화</h2>
+            <ul style="line-height: 2; font-size: 1.05rem;">
+                <li>✓ 반응형 그리드 레이아웃 (Grid & Flexbox)</li>
+                <li>✓ 터치 최적화 (최소 44x44px 터치 영역)</li>
+                <li>✓ 모바일 네비게이션 (햄버거 메뉴)</li>
+                <li>✓ 이미지 자동 크기 조절</li>
+                <li>✓ 폰트 크기 자동 조정</li>
+                <li>✓ iOS/Android 특화 최적화</li>
+                <li>✓ 가로모드(Landscape) 지원</li>
+                <li>✓ 고해상도 디스플레이 지원</li>
+                <li>✓ Reduced Motion 접근성</li>
+                <li>✓ 인쇄 스타일 최적화</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="index.html" class="btn btn-primary btn-large">메인 페이지로 돌아가기</a>
+        </div>
+    </div>
+
+    <script>
+        // Display current screen width
+        function updateScreenWidth() {
+            document.getElementById('screenWidth').textContent = window.innerWidth;
+        }
+        
+        updateScreenWidth();
+        window.addEventListener('resize', updateScreenWidth);
+
+        // Update every 100ms for smooth update
+        setInterval(updateScreenWidth, 100);
+    </script>
+</body>
+</html>
