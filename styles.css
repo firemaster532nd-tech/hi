@@ -441,10 +441,16 @@ section {
 
 .image-placeholder {
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
+}
+
+.image-placeholder img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .image-placeholder svg {
