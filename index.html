@@ -470,41 +470,51 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formsubmit.co/firemaster532nd@gmail.com" method="POST">
+                        <!-- FormSubmit 설정 -->
+                        <input type="hidden" name="_subject" value="[EZ Solution] 새로운 문의가 접수되었습니다">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="text" name="_honey" style="display:none">
+                        
                         <div class="form-group">
                             <label for="name">이름 *</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="이름" required>
                         </div>
                         <div class="form-group">
                             <label for="company">회사명</label>
-                            <input type="text" id="company" name="company">
+                            <input type="text" id="company" name="회사명">
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="phone">연락처 *</label>
-                                <input type="tel" id="phone" name="phone" required>
+                                <input type="tel" id="phone" name="연락처" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">이메일 *</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" name="이메일" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="subject">문의 유형</label>
-                            <select id="subject" name="subject">
+                            <select id="subject" name="문의유형">
                                 <option value="">선택해주세요</option>
-                                <option value="견적">견적 문의</option>
-                                <option value="상담">시공 상담</option>
-                                <option value="AS">A/S 문의</option>
-                                <option value="기타">기타 문의</option>
+                                <option value="견적 문의">견적 문의</option>
+                                <option value="시공 상담">시공 상담</option>
+                                <option value="A/S 문의">A/S 문의</option>
+                                <option value="기타 문의">기타 문의</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message">문의내용 *</label>
-                            <textarea id="message" name="message" rows="6" required></textarea>
+                            <textarea id="message" name="문의내용" rows="6" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">문의하기</button>
                     </form>
+                    <p style="margin-top: 15px; font-size: 14px; color: #666; text-align: center;">
+                        문의 제출 후 확인 페이지로 이동됩니다.<br>
+                        첫 전송 시 이메일 인증이 필요할 수 있습니다.
+                    </p>
                 </div>
             </div>
         </div>
