@@ -97,7 +97,7 @@ document.querySelectorAll('.service-card, .process-item, .portfolio-item').forEa
     observer.observe(el);
 });
 
-// 폼 제출 처리 (Getform.io 사용 - AJAX)
+// 폼 제출 처리 (Web3Forms 사용 - 무료, AJAX 지원)
 const contactForm = document.getElementById('contactForm');
 const submitButton = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
@@ -113,30 +113,42 @@ if (contactForm && submitButton) {
         // 폼 데이터 수집
         const formData = new FormData(contactForm);
         
+        // Web3Forms 데이터 구성
+        const data = {
+            access_key: "e0c4fbfd-e37d-4b2f-978f-6ea18fbecc0c", // firemaster532nd@gmail.com용 API 키
+            name: formData.get('name'),
+            company: formData.get('company') || '(미기재)',
+            phone: formData.get('phone'),
+            email: formData.get('email'),
+            subject: `[EZ Solution 문의] ${formData.get('subject') || '(미선택)'} - ${formData.get('name')}`,
+            message: formData.get('message'),
+            from_name: formData.get('name'),
+            replyto: formData.get('email')
+        };
+        
         // 콘솔 로그 (디버깅용)
-        console.log('문의 내용:', {
-            이름: formData.get('name'),
-            회사명: formData.get('company'),
-            연락처: formData.get('phone'),
-            이메일: formData.get('email'),
-            문의유형: formData.get('subject'),
-            문의내용: formData.get('message')
-        });
+        console.log('문의 내용:', data);
         
         try {
-            // Getform.io를 사용한 이메일 전송
-            // firemaster532nd@gmail.com으로 전달됩니다
-            const response = await fetch('https://getform.io/f/bvrrykpa', {
+            // Web3Forms API를 사용한 이메일 전송
+            const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
             });
             
-            if (response.ok) {
-                console.log('SUCCESS!', response.status);
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                console.log('SUCCESS!', result);
                 alert('✅ 문의가 성공적으로 접수되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
                 contactForm.reset();
             } else {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.error('Web3Forms error:', result);
+                throw new Error(result.message || '전송 실패');
             }
             
         } catch (error) {
