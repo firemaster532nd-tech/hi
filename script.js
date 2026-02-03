@@ -97,7 +97,7 @@ document.querySelectorAll('.service-card, .process-item, .portfolio-item').forEa
     observer.observe(el);
 });
 
-// 폼 제출 처리 (Web3Forms 사용)
+// 폼 제출 처리 (Getform.io 사용 - AJAX)
 const contactForm = document.getElementById('contactForm');
 const submitButton = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
@@ -113,54 +113,34 @@ if (contactForm && submitButton) {
         // 폼 데이터 수집
         const formData = new FormData(contactForm);
         
-        // Web3Forms API 키 설정 (무료)
-        // 사용자가 https://web3forms.com 에서 자신의 이메일로 API 키를 받아야 함
-        // 임시로 FormSubmit.co를 사용 (설정 불필요, 바로 사용 가능)
-        
-        const data = {
+        // 콘솔 로그 (디버깅용)
+        console.log('문의 내용:', {
             이름: formData.get('name'),
-            회사명: formData.get('company') || '(미기재)',
+            회사명: formData.get('company'),
             연락처: formData.get('phone'),
             이메일: formData.get('email'),
-            문의유형: formData.get('subject') || '(미선택)',
+            문의유형: formData.get('subject'),
             문의내용: formData.get('message')
-        };
-        
-        // 콘솔 로그 (디버깅용)
-        console.log('문의 내용:', data);
+        });
         
         try {
-            // FormSubmit.co를 사용한 이메일 전송
-            // firemaster532nd@gmail.com으로 전송됩니다
-            const response = await fetch('https://formsubmit.co/ajax/firemaster532nd@gmail.com', {
+            // Getform.io를 사용한 이메일 전송
+            // firemaster532nd@gmail.com으로 전달됩니다
+            const response = await fetch('https://getform.io/f/bvrrykpa', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    _subject: `[EZ Solution 문의] ${data.문의유형} - ${data.이름}`,
-                    _template: 'box',
-                    _captcha: 'false',
-                    이름: data.이름,
-                    회사명: data.회사명,
-                    연락처: data.연락처,
-                    이메일: data.이메일,
-                    문의유형: data.문의유형,
-                    문의내용: data.문의내용
-                })
+                body: formData
             });
             
-            const result = await response.json();
-            
-            if (response.ok && result.success) {
+            if (response.ok) {
+                console.log('SUCCESS!', response.status);
                 alert('✅ 문의가 성공적으로 접수되었습니다!\n빠른 시일 내에 연락드리겠습니다.');
                 contactForm.reset();
             } else {
-                throw new Error('전송 실패');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
+            
         } catch (error) {
-            console.error('Error:', error);
+            console.error('FAILED...', error);
             alert('❌ 문의 전송에 실패했습니다.\n\n다시 시도해주시거나,\n직접 이메일(firemaster532nd@gmail.com)로 연락주세요.');
         } finally {
             submitButton.textContent = originalText;
