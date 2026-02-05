@@ -472,32 +472,34 @@
                 <div class="contact-form">
                     <form id="contactForm" action="https://formsubmit.co/firemaster532nd@gmail.com" method="POST">
                         <!-- FormSubmit 설정 -->
-                        <input type="hidden" name="_subject" value="[EZ Solution] 새로운 문의가 접수되었습니다">
+                        <input type="hidden" name="_subject" value="[EZ Solution 내화채움공사] 새로운 문의가 접수되었습니다">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://8000-iuas78bjc2ylvi9b30jh1-8f57ffe2.sandbox.novita.ai/thank-you.html">
+                        <input type="hidden" name="_autoresponse" value="문의해 주셔서 감사합니다. EZ Solution 내화채움공사에서 영업일 기준 1-2일 내로 연락드리겠습니다.">
                         <input type="text" name="_honey" style="display:none">
                         
                         <div class="form-group">
                             <label for="name">이름 *</label>
-                            <input type="text" id="name" name="이름" required>
+                            <input type="text" id="name" name="이름" required placeholder="홍길동">
                         </div>
                         <div class="form-group">
                             <label for="company">회사명</label>
-                            <input type="text" id="company" name="회사명">
+                            <input type="text" id="company" name="회사명" placeholder="(주)회사명">
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="phone">연락처 *</label>
-                                <input type="tel" id="phone" name="연락처" required>
+                                <input type="tel" id="phone" name="연락처" required placeholder="010-1234-5678">
                             </div>
                             <div class="form-group">
                                 <label for="email">이메일 *</label>
-                                <input type="email" id="email" name="이메일" required>
+                                <input type="email" id="email" name="이메일" required placeholder="example@email.com">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="subject">문의 유형</label>
-                            <select id="subject" name="문의유형">
+                            <label for="subject">문의 유형 *</label>
+                            <select id="subject" name="문의유형" required>
                                 <option value="">선택해주세요</option>
                                 <option value="견적 문의">견적 문의</option>
                                 <option value="시공 상담">시공 상담</option>
@@ -507,13 +509,13 @@
                         </div>
                         <div class="form-group">
                             <label for="message">문의내용 *</label>
-                            <textarea id="message" name="문의내용" rows="6" required></textarea>
+                            <textarea id="message" name="문의내용" rows="6" required placeholder="문의하실 내용을 상세히 입력해주세요.&#10;&#10;예시:&#10;- 현장 위치: &#10;- 시공 면적: &#10;- 희망 일정: &#10;- 기타 요구사항:"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">문의하기</button>
                     </form>
                     <p style="margin-top: 15px; font-size: 14px; color: #666; text-align: center;">
-                        문의 제출 후 확인 페이지로 이동됩니다.<br>
-                        첫 전송 시 이메일 인증이 필요할 수 있습니다.
+                        📧 문의 제출 시 입력하신 이메일로 확인 메일이 발송됩니다.<br>
+                        💡 영업일 기준 1-2일 내로 담당자가 연락드립니다.
                     </p>
                 </div>
             </div>
