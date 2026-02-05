@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소개 - 우리집 말티즈</title>
+    <link rel="stylesheet" href="css/kimchi-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 헤더 & 네비게이션 -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="kimchi-home.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+                        <img src="images/kimchi-logo.png" alt="김치 로고" style="width: 50px; height: 50px; object-fit: contain;">
+                        <h1>Kimchi's World</h1>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="kimchi-home.html"><i class="fas fa-home"></i> 홈</a></li>
+                        <li class="dropdown">
+                            <a href="kimchi-history.html"><i class="fas fa-book"></i> 김치의 역사 <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="kimchi-history.html#birth">태어난 날</a></li>
+                                <li><a href="kimchi-history.html#growing">성장기</a></li>
+                                <li><a href="kimchi-history.html#moments">특별한 순간들</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="kimchi-gallery.html"><i class="fas fa-images"></i> 갤러리 <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="kimchi-gallery.html#photos">사진첩</a></li>
+                                <li><a href="kimchi-gallery.html#videos">영상</a></li>
+                                <li><a href="kimchi-gallery.html#upload">업로드</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="kimchi-daily.html"><i class="fas fa-calendar-alt"></i> 일상 <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="kimchi-daily.html#diary">일기</a></li>
+                                <li><a href="kimchi-daily.html#schedule">일정</a></li>
+                                <li><a href="kimchi-daily.html#health">건강기록</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="kimchi-about.html" class="active"><i class="fas fa-info-circle"></i> 소개</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 페이지 헤더 -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-info-circle"></i> 김치를 소개합니다</h1>
+            <p>사랑스러운 말티즈 김치에 대해 알아보아요</p>
+        </div>
+    </section>
+
+    <!-- 소개 섹션 -->
+    <section class="about-intro">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-placeholder-large">
+                        <i class="fas fa-dog fa-10x"></i>
+                        <p>김치의 멋진 사진</p>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>안녕하세요, 김치입니다! 🐾</h2>
+                    <p>
+                        저는 2020년 3월 15일에 태어난 말티즈예요. 
+                        하얗고 복슬복슬한 털과 까만 눈망울이 제 매력 포인트랍니다!
+                    </p>
+                    <p>
+                        이름이 김치인 이유는요, 가족들이 한국 음식을 좋아하셔서 
+                        특별하고 귀여운 이름을 지어주셨대요. 처음엔 조금 특이한 이름이라고 
+                        생각했지만, 지금은 너무 마음에 들어요!
+                    </p>
+                    <p>
+                        산책하기, 간식 먹기, 사람들한테 애교 부리기를 정말 좋아해요.
+                        특히 가족들과 함께 있을 때가 제일 행복하답니다! 💕
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 성격 & 특징 -->
+    <section class="personality-section">
+        <div class="container">
+            <h2 class="section-title">성격 & 특징</h2>
+            <div class="personality-grid">
+                <div class="personality-card">
+                    <div class="personality-icon">
+                        <i class="fas fa-smile-beam"></i>
+                    </div>
+                    <h3>활발함</h3>
+                    <p>언제나 에너지가 넘치고 놀기를 좋아해요</p>
+                </div>
+                <div class="personality-card">
+                    <div class="personality-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>애교쟁이</h3>
+                    <p>사람들을 좋아하고 애교가 정말 많아요</p>
+                </div>
+                <div class="personality-card">
+                    <div class="personality-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>영리함</h3>
+                    <p>훈련을 빨리 배우고 명령을 잘 따라요</p>
+                </div>
+                <div class="personality-card">
+                    <div class="personality-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>사교적</h3>
+                    <p>다른 강아지들과도 잘 지내요</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 좋아하는 것 / 싫어하는 것 -->
+    <section class="preferences-section">
+        <div class="container">
+            <div class="preferences-grid">
+                <div class="preferences-card likes">
+                    <h2><i class="fas fa-thumbs-up"></i> 좋아하는 것</h2>
+                    <ul class="preferences-list">
+                        <li>
+                            <i class="fas fa-bone"></i>
+                            <div>
+                                <strong>간식</strong>
+                                <p>특히 닭고기 간식을 좋아해요</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-walking"></i>
+                            <div>
+                                <strong>산책</strong>
+                                <p>매일 아침 저녁으로 산책하는 시간</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-futbol"></i>
+                            <div>
+                                <strong>공놀이</strong>
+                                <p>삑삑 소리나는 공이 최고!</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-couch"></i>
+                            <div>
+                                <strong>낮잠</strong>
+                                <p>햇살 좋은 곳에서 자는 게 좋아요</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-user-friends"></i>
+                            <div>
+                                <strong>사람</strong>
+                                <p>가족들이랑 함께 있는 시간</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="preferences-card dislikes">
+                    <h2><i class="fas fa-thumbs-down"></i> 싫어하는 것</h2>
+                    <ul class="preferences-list">
+                        <li>
+                            <i class="fas fa-shower"></i>
+                            <div>
+                                <strong>목욕</strong>
+                                <p>물은 좋은데 목욕은 조금...</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-thunder"></i>
+                            <div>
+                                <strong>천둥 소리</strong>
+                                <p>큰 소리가 무서워요</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-door-closed"></i>
+                            <div>
+                                <strong>혼자 있기</strong>
+                                <p>가족들이 나가면 외로워요</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-cut"></i>
+                            <div>
+                                <strong>발톱 깎기</strong>
+                                <p>간지러워서 싫어요</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-car"></i>
+                            <div>
+                                <strong>차 타기</strong>
+                                <p>어지러워서 멀미해요</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 하루 일과 -->
+    <section class="routine-section">
+        <div class="container">
+            <h2 class="section-title">김치의 하루 일과</h2>
+            <div class="routine-timeline">
+                <div class="routine-item">
+                    <div class="routine-time">07:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-sun"></i>
+                        <h4>기상 & 아침 산책</h4>
+                        <p>상쾌한 아침 공기를 마시며 산책해요</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">08:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-utensils"></i>
+                        <h4>아침 식사</h4>
+                        <p>맛있는 사료와 물을 먹어요</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">10:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-bed"></i>
+                        <h4>오전 낮잠</h4>
+                        <p>식후 소화를 하며 잠깐 자요</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">12:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-gamepad"></i>
+                        <h4>놀이 시간</h4>
+                        <p>장난감 가지고 신나게 놀아요</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">15:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-bone"></i>
+                        <h4>간식 시간</h4>
+                        <p>오후의 달콤한 간식 타임!</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">18:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-walking"></i>
+                        <h4>저녁 산책</h4>
+                        <p>친구들을 만나며 산책해요</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">19:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-utensils"></i>
+                        <h4>저녁 식사</h4>
+                        <p>하루의 마지막 식사 시간</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">21:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-moon"></i>
+                        <h4>가족과 함께</h4>
+                        <p>가족들과 함께 TV 보며 휴식</p>
+                    </div>
+                </div>
+                <div class="routine-item">
+                    <div class="routine-time">23:00</div>
+                    <div class="routine-content">
+                        <i class="fas fa-bed"></i>
+                        <h4>취침</h4>
+                        <p>편안하게 잠자리에 들어요</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 말티즈에 대해 -->
+    <section class="breed-info-section">
+        <div class="container">
+            <h2 class="section-title">말티즈에 대해 알아보기</h2>
+            <div class="breed-info-grid">
+                <div class="breed-card">
+                    <h3><i class="fas fa-info-circle"></i> 품종 정보</h3>
+                    <ul>
+                        <li><strong>원산지:</strong> 지중해 몰타 지역</li>
+                        <li><strong>크기:</strong> 소형견 (3-4kg)</li>
+                        <li><strong>수명:</strong> 12-15년</li>
+                        <li><strong>털:</strong> 흰색, 장모종</li>
+                    </ul>
+                </div>
+                <div class="breed-card">
+                    <h3><i class="fas fa-heart"></i> 성격</h3>
+                    <ul>
+                        <li>활발하고 장난기 많음</li>
+                        <li>사람을 매우 좋아함</li>
+                        <li>영리하고 학습 능력 우수</li>
+                        <li>애정이 많고 충성심 강함</li>
+                    </ul>
+                </div>
+                <div class="breed-card">
+                    <h3><i class="fas fa-medkit"></i> 관리 요령</h3>
+                    <ul>
+                        <li>매일 빗질로 털 관리</li>
+                        <li>정기적인 미용 필요</li>
+                        <li>눈물자국 관리</li>
+                        <li>치아 건강 관리</li>
+                    </ul>
+                </div>
+                <div class="breed-card">
+                    <h3><i class="fas fa-running"></i> 운동량</h3>
+                    <ul>
+                        <li>하루 2회 산책 권장</li>
+                        <li>실내 놀이도 좋아함</li>
+                        <li>과격한 운동 불필요</li>
+                        <li>적절한 놀이 시간 필요</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연락처 -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="section-title">연락하기</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>김치와 친구하고 싶으신가요?</h3>
+                    <p>궁금한 점이 있거나 김치와 놀고 싶으시다면 언제든 연락 주세요!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>kimchi@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>서울특별시 강남구</span>
+                        </div>
+                    </div>
+                    <div class="social-links-large">
+                        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Kimchi's World</h4>
+                    <p>사랑스러운 말티즈 김치의 일상</p>
+                </div>
+                <div class="footer-section">
+                    <h4>바로가기</h4>
+                    <ul>
+                        <li><a href="kimchi-home.html">홈</a></li>
+                        <li><a href="kimchi-history.html">김치의 역사</a></li>
+                        <li><a href="kimchi-gallery.html">갤러리</a></li>
+                        <li><a href="kimchi-daily.html">일상</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>연락처</h4>
+                    <p><i class="fas fa-envelope"></i> kimchi@example.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kimchi's World. Made with <i class="fas fa-heart"></i> for Kimchi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/kimchi-script.js"></script>
+</body>
+</html>

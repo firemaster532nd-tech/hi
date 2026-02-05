@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갤러리 업로드 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #ff4081;
+        }
+        #result {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 갤러리 업로드 테스트</h1>
+    
+    <div class="test-section">
+        <h2>1. localStorage 확인</h2>
+        <button onclick="checkLocalStorage()">localStorage 확인</button>
+        <button onclick="clearLocalStorage()">localStorage 초기화</button>
+    </div>
+
+    <div class="test-section">
+        <h2>2. 테스트 사진 추가</h2>
+        <button onclick="addTestPhoto()">테스트 사진 추가</button>
+        <button onclick="addMultiplePhotos()">여러 장 추가 (3장)</button>
+    </div>
+
+    <div class="test-section">
+        <h2>3. 갤러리 확인</h2>
+        <button onclick="viewGallery()">갤러리 페이지로 이동</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        function log(message, isError = false) {
+            const result = document.getElementById('result');
+            const className = isError ? 'error' : 'success';
+            result.innerHTML += `<div class="${className}">${message}</div>`;
+        }
+
+        function clearResult() {
+            document.getElementById('result').innerHTML = '';
+        }
+
+        function checkLocalStorage() {
+            clearResult();
+            const photos = localStorage.getItem('kimchi_photos');
+            const videos = localStorage.getItem('kimchi_videos');
+            
+            log('📦 localStorage 내용:');
+            
+            if (photos) {
+                const photosArray = JSON.parse(photos);
+                log(`✅ 사진: ${photosArray.length}개`);
+                photosArray.forEach((photo, index) => {
+                    log(`  ${index + 1}. ${photo.title} (${photo.date}) - ${photo.category}`);
+                });
+            } else {
+                log('❌ 사진 없음');
+            }
+            
+            if (videos) {
+                const videosArray = JSON.parse(videos);
+                log(`✅ 영상: ${videosArray.length}개`);
+            } else {
+                log('❌ 영상 없음');
+            }
+        }
+
+        function clearLocalStorage() {
+            if (confirm('모든 갤러리 데이터를 삭제하시겠습니까?')) {
+                localStorage.removeItem('kimchi_photos');
+                localStorage.removeItem('kimchi_videos');
+                clearResult();
+                log('🗑️ localStorage가 초기화되었습니다.');
+            }
+        }
+
+        function createTestImageDataUrl() {
+            // 1x1 빨간색 픽셀 PNG
+            return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==';
+        }
+
+        function addTestPhoto() {
+            clearResult();
+            
+            const testPhoto = {
+                title: '테스트 사진',
+                date: new Date().toISOString().split('T')[0],
+                category: 'daily',
+                description: '업로드 테스트용 사진입니다',
+                dataUrl: createTestImageDataUrl(),
+                uploadDate: new Date().toISOString()
+            };
+            
+            // localStorage에서 기존 사진 가져오기
+            let photos = [];
+            const stored = localStorage.getItem('kimchi_photos');
+            if (stored) {
+                photos = JSON.parse(stored);
+            }
+            
+            // 새 사진 추가
+            photos.push(testPhoto);
+            
+            // 저장
+            localStorage.setItem('kimchi_photos', JSON.stringify(photos));
+            
+            log(`✅ 테스트 사진이 추가되었습니다!`);
+            log(`📊 총 사진 개수: ${photos.length}개`);
+            log('🔗 갤러리 페이지로 이동하여 확인하세요.');
+        }
+
+        function addMultiplePhotos() {
+            clearResult();
+            
+            const categories = ['daily', 'travel', 'special'];
+            const titles = ['산책하는 김치', '여행 가는 김치', '생일 축하 김치'];
+            
+            let photos = [];
+            const stored = localStorage.getItem('kimchi_photos');
+            if (stored) {
+                photos = JSON.parse(stored);
+            }
+            
+            for (let i = 0; i < 3; i++) {
+                const testPhoto = {
+                    title: titles[i],
+                    date: new Date().toISOString().split('T')[0],
+                    category: categories[i],
+                    description: `테스트 사진 ${i + 1}`,
+                    dataUrl: createTestImageDataUrl(),
+                    uploadDate: new Date().toISOString()
+                };
+                photos.push(testPhoto);
+            }
+            
+            localStorage.setItem('kimchi_photos', JSON.stringify(photos));
+            
+            log(`✅ 3장의 테스트 사진이 추가되었습니다!`);
+            log(`📊 총 사진 개수: ${photos.length}개`);
+            log('🔗 갤러리 페이지로 이동하여 확인하세요.');
+        }
+
+        function viewGallery() {
+            window.location.href = 'kimchi-gallery.html';
+        }
+
+        // 페이지 로드 시 자동으로 localStorage 확인
+        window.addEventListener('DOMContentLoaded', function() {
+            checkLocalStorage();
+        });
+    </script>
+</body>
+</html>

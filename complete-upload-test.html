@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>완전 업로드 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #ff6b9d; }
+        h2 { color: #333; border-bottom: 2px solid #ff6b9d; padding-bottom: 10px; }
+        button {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 15px;
+        }
+        button:hover { opacity: 0.9; }
+        button.secondary { background: #666; }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .log {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            border: 1px solid #ddd;
+        }
+        .preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .preview img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid #ddd;
+        }
+        .success { color: #28a745; font-weight: bold; }
+        .error { color: #dc3545; font-weight: bold; }
+        .info { color: #007bff; }
+        .warning { color: #ffc107; }
+        label { font-weight: bold; margin-top: 10px; display: block; }
+        .required { color: red; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .status-ok { background: #d4edda; color: #155724; }
+        .status-error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🧪 완전 업로드 테스트</h1>
+
+    <div class="test-section">
+        <h2>1️⃣ 서버 상태 확인</h2>
+        <button onclick="checkServer()">🔍 서버 확인</button>
+        <button onclick="checkPhotos()" class="secondary">📋 사진 목록 확인</button>
+        <div id="serverLog" class="log">대기 중...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>2️⃣ 완전한 업로드 테스트</h2>
+        
+        <label>🖼️ 이미지 파일 선택 <span class="required">*</span></label>
+        <input type="file" id="testFile" accept="image/*" onchange="previewFile()">
+        <div id="filePreview" class="preview"></div>
+
+        <label>📝 제목 <span class="required">*</span></label>
+        <input type="text" id="testTitle" value="테스트 사진" onkeyup="checkForm()">
+
+        <label>📅 날짜 <span class="required">*</span></label>
+        <input type="date" id="testDate" onchange="checkForm()">
+
+        <label>🏷️ 카테고리 <span class="required">*</span></label>
+        <select id="testCategory" onchange="checkForm()">
+            <option value="">선택하세요</option>
+            <option value="daily">일상</option>
+            <option value="grooming">미용사진</option>
+            <option value="travel">여행</option>
+            <option value="friends">친구들</option>
+            <option value="special">특별한 날</option>
+        </select>
+
+        <label>💬 설명 (선택)</label>
+        <textarea id="testDescription" rows="3">테스트 업로드</textarea>
+
+        <br><br>
+        <div id="formStatus"></div>
+        <button onclick="testUpload()">📤 업로드 테스트</button>
+        <button onclick="resetForm()" class="secondary">🔄 폼 초기화</button>
+        
+        <div id="uploadLog" class="log">업로드 로그가 여기 표시됩니다...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>3️⃣ 갤러리 페이지 확인</h2>
+        <button onclick="window.open('kimchi-gallery.html', '_blank')">🖼️ 갤러리 열기</button>
+        <p style="color: #666; margin-top: 10px;">
+            ℹ️ 업로드 후 갤러리 페이지를 열어 사진첩 섹션에서 카드1에 사진이 표시되는지 확인하세요.
+        </p>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+
+        // 페이지 로드 시 초기화
+        window.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('testDate').value = today;
+            document.getElementById('testCategory').value = 'daily';
+            checkServer();
+            checkForm();
+        });
+
+        function log(id, msg, type = 'info') {
+            const el = document.getElementById(id);
+            const time = new Date().toLocaleTimeString();
+            let icon = '📝';
+            if (type === 'success') icon = '✅';
+            if (type === 'error') icon = '❌';
+            if (type === 'warning') icon = '⚠️';
+            if (type === 'info') icon = 'ℹ️';
+            
+            el.innerHTML += `<div class="${type}">${icon} [${time}] ${msg}</div>`;
+            el.scrollTop = el.scrollHeight;
+        }
+
+        function clearLog(id) {
+            document.getElementById(id).innerHTML = '';
+        }
+
+        async function checkServer() {
+            clearLog('serverLog');
+            log('serverLog', '서버 연결 확인 중...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/photos`);
+                const data = await response.json();
+                
+                log('serverLog', `서버 응답: ${response.status}`, 'success');
+                log('serverLog', `현재 사진 개수: ${data.data.length}개`, 'info');
+                
+                if (data.success) {
+                    log('serverLog', '✅ 서버가 정상 작동 중입니다!', 'success');
+                }
+            } catch (error) {
+                log('serverLog', `서버 연결 실패: ${error.message}`, 'error');
+            }
+        }
+
+        async function checkPhotos() {
+            clearLog('serverLog');
+            log('serverLog', '사진 목록 불러오는 중...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/photos`);
+                const data = await response.json();
+                
+                if (data.success && data.data.length > 0) {
+                    log('serverLog', `총 ${data.data.length}개의 사진이 있습니다:`, 'success');
+                    data.data.forEach((photo, i) => {
+                        log('serverLog', `  ${i+1}. ${photo.title} (${photo.category}) - ${photo.date}`, 'info');
+                    });
+                } else {
+                    log('serverLog', '사진이 없습니다.', 'warning');
+                }
+            } catch (error) {
+                log('serverLog', `오류: ${error.message}`, 'error');
+            }
+        }
+
+        function previewFile() {
+            const file = document.getElementById('testFile').files[0];
+            const preview = document.getElementById('filePreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(file);
+                checkForm();
+            }
+        }
+
+        function checkForm() {
+            const title = document.getElementById('testTitle').value.trim();
+            const date = document.getElementById('testDate').value;
+            const category = document.getElementById('testCategory').value;
+            const file = document.getElementById('testFile').files[0];
+            
+            const status = document.getElementById('formStatus');
+            let html = '<div style="margin: 10px 0;">';
+            
+            html += title ? '<span class="status-badge status-ok">✓ 제목</span>' : '<span class="status-badge status-error">✗ 제목</span>';
+            html += date ? '<span class="status-badge status-ok">✓ 날짜</span>' : '<span class="status-badge status-error">✗ 날짜</span>';
+            html += (category && category !== '') ? '<span class="status-badge status-ok">✓ 카테고리</span>' : '<span class="status-badge status-error">✗ 카테고리</span>';
+            html += file ? '<span class="status-badge status-ok">✓ 파일</span>' : '<span class="status-badge status-error">✗ 파일</span>';
+            
+            html += '</div>';
+            
+            const allValid = title && date && category && category !== '' && file;
+            if (allValid) {
+                html += '<div class="success">✅ 모든 필수 항목이 입력되었습니다!</div>';
+            } else {
+                html += '<div class="error">❌ 필수 항목을 모두 입력해주세요.</div>';
+            }
+            
+            status.innerHTML = html;
+            return allValid;
+        }
+
+        async function testUpload() {
+            clearLog('uploadLog');
+            
+            if (!checkForm()) {
+                log('uploadLog', '필수 항목을 모두 입력해주세요!', 'error');
+                return;
+            }
+            
+            const file = document.getElementById('testFile').files[0];
+            const title = document.getElementById('testTitle').value.trim();
+            const date = document.getElementById('testDate').value;
+            const category = document.getElementById('testCategory').value;
+            const description = document.getElementById('testDescription').value;
+            
+            log('uploadLog', '=== 업로드 시작 ===', 'info');
+            log('uploadLog', `파일: ${file.name} (${file.type}, ${(file.size/1024).toFixed(2)}KB)`, 'info');
+            log('uploadLog', `제목: "${title}"`, 'info');
+            log('uploadLog', `날짜: "${date}"`, 'info');
+            log('uploadLog', `카테고리: "${category}"`, 'info');
+            log('uploadLog', `설명: "${description}"`, 'info');
+            
+            log('uploadLog', '파일을 Base64로 변환 중...', 'info');
+            
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const dataUrl = e.target.result;
+                log('uploadLog', `Base64 변환 완료 (길이: ${dataUrl.length})`, 'success');
+                
+                const photoData = {
+                    title: title,
+                    date: date,
+                    category: category,
+                    description: description,
+                    dataUrl: dataUrl
+                };
+                
+                log('uploadLog', 'API 요청 전송 중...', 'info');
+                log('uploadLog', `URL: ${API_BASE}/api/photos`, 'info');
+                
+                try {
+                    const response = await fetch(`${API_BASE}/api/photos`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(photoData)
+                    });
+                    
+                    log('uploadLog', `응답 코드: ${response.status}`, response.ok ? 'success' : 'error');
+                    
+                    const result = await response.json();
+                    log('uploadLog', `응답 데이터: ${JSON.stringify(result, null, 2)}`, 'info');
+                    
+                    if (result.success) {
+                        log('uploadLog', '✅✅✅ 업로드 성공! ✅✅✅', 'success');
+                        log('uploadLog', `사진 ID: ${result.data.id}`, 'success');
+                        log('uploadLog', `제목: ${result.data.title}`, 'success');
+                        log('uploadLog', `카테고리: ${result.data.category}`, 'success');
+                        log('uploadLog', '', 'info');
+                        log('uploadLog', '💡 갤러리 페이지에서 확인하세요!', 'success');
+                        
+                        // 3초 후 갤러리로 이동 제안
+                        setTimeout(() => {
+                            if (confirm('업로드 성공! 갤러리 페이지로 이동하시겠습니까?')) {
+                                window.open('kimchi-gallery.html', '_blank');
+                            }
+                        }, 2000);
+                    } else {
+                        log('uploadLog', `업로드 실패: ${result.error || '알 수 없는 오류'}`, 'error');
+                    }
+                } catch (error) {
+                    log('uploadLog', `오류 발생: ${error.message}`, 'error');
+                    log('uploadLog', `상세: ${error.stack}`, 'error');
+                }
+            };
+            
+            reader.onerror = (error) => {
+                log('uploadLog', `파일 읽기 오류: ${error}`, 'error');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function resetForm() {
+            document.getElementById('testFile').value = '';
+            document.getElementById('testTitle').value = '테스트 사진';
+            document.getElementById('testDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('testCategory').value = 'daily';
+            document.getElementById('testDescription').value = '테스트 업로드';
+            document.getElementById('filePreview').innerHTML = '';
+            checkForm();
+            clearLog('uploadLog');
+        }
+    </script>
+</body>
+</html>

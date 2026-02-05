@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery Upload Test</title>
+</head>
+<body>
+    <h1>Gallery Upload Test</h1>
+    <button onclick="testUpload()">Test Upload</button>
+    <div id="result"></div>
+    
+    <script>
+    function testUpload() {
+        // 테스트 이미지 데이터 (1x1 빨간색 픽셀)
+        const testImageData = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==';
+        
+        const data = {
+            title: '테스트 사진',
+            date: '2024-02-04',
+            category: 'daily',
+            description: '테스트 설명',
+            dataUrl: testImageData,
+            uploadDate: new Date().toISOString()
+        };
+        
+        // localStorage에 직접 저장
+        let photos = [];
+        const stored = localStorage.getItem('kimchi_photos');
+        if (stored) {
+            photos = JSON.parse(stored);
+        }
+        
+        photos.unshift(data);
+        localStorage.setItem('kimchi_photos', JSON.stringify(photos));
+        
+        document.getElementById('result').innerHTML = 
+            '<p>테스트 이미지가 저장되었습니다!</p>' +
+            '<p>총 사진 수: ' + photos.length + '</p>' +
+            '<a href="kimchi-gallery.html">갤러리 페이지로 이동</a>';
+    }
+    </script>
+</body>
+</html>

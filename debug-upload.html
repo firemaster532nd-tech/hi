@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>업로드 디버그 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-box {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .log {
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>🔧 업로드 디버그 테스트</h1>
+
+    <div class="test-box">
+        <h2>1. 서버 연결 테스트</h2>
+        <button onclick="testServer()">서버 확인</button>
+        <div id="serverLog" class="log">대기 중...</div>
+    </div>
+
+    <div class="test-box">
+        <h2>2. API 테스트</h2>
+        <button onclick="testGetPhotos()">사진 조회</button>
+        <button onclick="testAddPhoto()">사진 추가</button>
+        <div id="apiLog" class="log">대기 중...</div>
+    </div>
+
+    <div class="test-box">
+        <h2>3. 실제 업로드 테스트</h2>
+        <input type="file" id="testFile" accept="image/*">
+        <br><br>
+        <input type="text" id="testTitle" placeholder="제목" value="테스트 사진">
+        <input type="date" id="testDate" value="2024-02-05">
+        <select id="testCategory">
+            <option value="daily">일상</option>
+            <option value="grooming">미용사진</option>
+        </select>
+        <br><br>
+        <button onclick="testUpload()">업로드 테스트</button>
+        <div id="uploadLog" class="log">대기 중...</div>
+    </div>
+
+    <div class="test-box">
+        <h2>4. 갤러리 페이지로 이동</h2>
+        <button onclick="window.location.href='kimchi-gallery.html'">갤러리 열기</button>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+
+        function log(id, msg, type = 'info') {
+            const el = document.getElementById(id);
+            const time = new Date().toLocaleTimeString();
+            el.innerHTML += `<div class="${type}">[${time}] ${msg}</div>`;
+            el.scrollTop = el.scrollHeight;
+        }
+
+        function clearLog(id) {
+            document.getElementById(id).innerHTML = '';
+        }
+
+        async function testServer() {
+            clearLog('serverLog');
+            log('serverLog', `서버 URL: ${API_BASE}`, 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/photos`);
+                log('serverLog', `응답 코드: ${response.status}`, 'info');
+                
+                const data = await response.json();
+                log('serverLog', `응답 데이터: ${JSON.stringify(data)}`, 'success');
+                
+                if (data.success) {
+                    log('serverLog', `✅ 서버 정상 작동! 사진 개수: ${data.data.length}`, 'success');
+                }
+            } catch (error) {
+                log('serverLog', `❌ 오류: ${error.message}`, 'error');
+            }
+        }
+
+        async function testGetPhotos() {
+            clearLog('apiLog');
+            log('apiLog', 'GET /api/photos 요청 중...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/photos`);
+                const data = await response.json();
+                
+                log('apiLog', `✅ 응답 받음: ${JSON.stringify(data, null, 2)}`, 'success');
+                
+                if (data.data && data.data.length > 0) {
+                    log('apiLog', `\n사진 목록:`, 'info');
+                    data.data.forEach((photo, i) => {
+                        log('apiLog', `${i+1}. ${photo.title} (${photo.category})`, 'info');
+                    });
+                } else {
+                    log('apiLog', 'ℹ️ 사진이 없습니다.', 'info');
+                }
+            } catch (error) {
+                log('apiLog', `❌ 오류: ${error.message}`, 'error');
+            }
+        }
+
+        async function testAddPhoto() {
+            clearLog('apiLog');
+            log('apiLog', 'POST /api/photos 요청 중...', 'info');
+            
+            // 1x1 빨간색 PNG
+            const testImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg==';
+            
+            const photoData = {
+                title: `API 테스트 ${new Date().toLocaleTimeString()}`,
+                date: '2024-02-05',
+                category: 'daily',
+                description: 'API 테스트용 사진',
+                dataUrl: testImage
+            };
+
+            try {
+                log('apiLog', `요청 데이터: ${JSON.stringify({...photoData, dataUrl: 'data:image/...(생략)'}, null, 2)}`, 'info');
+                
+                const response = await fetch(`${API_BASE}/api/photos`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(photoData)
+                });
+
+                const data = await response.json();
+                log('apiLog', `응답: ${JSON.stringify(data, null, 2)}`, data.success ? 'success' : 'error');
+                
+                if (data.success) {
+                    log('apiLog', `✅ 사진 추가 성공! ID: ${data.data.id}`, 'success');
+                    log('apiLog', '💡 "사진 조회" 버튼을 눌러 확인하세요!', 'info');
+                }
+            } catch (error) {
+                log('apiLog', `❌ 오류: ${error.message}`, 'error');
+                log('apiLog', `상세: ${error.stack}`, 'error');
+            }
+        }
+
+        async function testUpload() {
+            clearLog('uploadLog');
+            
+            const fileInput = document.getElementById('testFile');
+            const title = document.getElementById('testTitle').value;
+            const date = document.getElementById('testDate').value;
+            const category = document.getElementById('testCategory').value;
+
+            if (!fileInput.files || fileInput.files.length === 0) {
+                log('uploadLog', '❌ 파일을 선택해주세요!', 'error');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            log('uploadLog', `파일 선택됨: ${file.name} (${file.type}, ${file.size} bytes)`, 'info');
+
+            log('uploadLog', 'FileReader로 Base64 변환 중...', 'info');
+
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const dataUrl = e.target.result;
+                log('uploadLog', `Base64 변환 완료 (길이: ${dataUrl.length})`, 'success');
+
+                const photoData = {
+                    title: title,
+                    date: date,
+                    category: category,
+                    description: '실제 파일 업로드 테스트',
+                    dataUrl: dataUrl
+                };
+
+                log('uploadLog', `API 요청 시작...`, 'info');
+
+                try {
+                    const response = await fetch(`${API_BASE}/api/photos`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(photoData)
+                    });
+
+                    log('uploadLog', `응답 코드: ${response.status}`, 'info');
+
+                    const data = await response.json();
+                    log('uploadLog', `응답: ${JSON.stringify(data, null, 2)}`, data.success ? 'success' : 'error');
+
+                    if (data.success) {
+                        log('uploadLog', `✅ 업로드 성공!`, 'success');
+                        log('uploadLog', `ID: ${data.data.id}`, 'success');
+                        log('uploadLog', `제목: ${data.data.title}`, 'success');
+                        log('uploadLog', `\n💡 갤러리 페이지로 이동해서 확인하세요!`, 'info');
+                    }
+                } catch (error) {
+                    log('uploadLog', `❌ 업로드 오류: ${error.message}`, 'error');
+                }
+            };
+
+            reader.onerror = function(error) {
+                log('uploadLog', `❌ 파일 읽기 오류: ${error}`, 'error');
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // 페이지 로드 시 자동 테스트
+        window.addEventListener('DOMContentLoaded', () => {
+            testServer();
+        });
+    </script>
+</body>
+</html>

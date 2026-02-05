@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일상 - 우리집 말티즈</title>
+    <link rel="stylesheet" href="css/kimchi-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 헤더 & 네비게이션 -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="kimchi-home.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+                        <img src="images/kimchi-logo.png" alt="김치 로고" style="width: 50px; height: 50px; object-fit: contain;">
+                        <h1>Kimchi's World</h1>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="kimchi-home.html"><i class="fas fa-home"></i> 홈</a></li>
+                        <li class="dropdown">
+                            <a href="kimchi-history.html"><i class="fas fa-book"></i> 김치의 역사 <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="kimchi-history.html#birth">태어난 날</a></li>
+                                <li><a href="kimchi-history.html#growing">성장기</a></li>
+                                <li><a href="kimchi-history.html#moments">특별한 순간들</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="kimchi-gallery.html"><i class="fas fa-images"></i> 갤러리 <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="kimchi-gallery.html#photos">사진첩</a></li>
+                                <li><a href="kimchi-gallery.html#videos">영상</a></li>
+                                <li><a href="kimchi-gallery.html#upload">업로드</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="kimchi-daily.html" class="active"><i class="fas fa-calendar-alt"></i> 일상 <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#diary">일기</a></li>
+                                <li><a href="#schedule">일정</a></li>
+                                <li><a href="#health">건강기록</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="kimchi-about.html"><i class="fas fa-info-circle"></i> 소개</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 페이지 헤더 -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-calendar-alt"></i> 김치의 일상</h1>
+            <p>매일매일의 소중한 순간들을 기록해요</p>
+        </div>
+    </section>
+
+    <!-- 일기 섹션 -->
+    <section id="diary" class="diary-section">
+        <div class="container">
+            <h2 class="section-title">일기장</h2>
+            
+            <div class="diary-list">
+                <div class="diary-entry">
+                    <div class="diary-header">
+                        <div class="diary-date">
+                            <div class="date-box">
+                                <span class="day">04</span>
+                                <span class="month">2월</span>
+                            </div>
+                        </div>
+                        <div class="diary-meta">
+                            <h3>오늘도 즐거운 하루</h3>
+                            <span class="diary-weather">
+                                <i class="fas fa-sun"></i> 맑음 / 5°C
+                            </span>
+                        </div>
+                    </div>
+                    <div class="diary-content">
+                        <p>
+                            오늘은 아침 일찍 산책을 나갔어요. 날씨가 좋아서 김치도 신나게 뛰어놀았답니다.
+                            공원에서 친구 뽀삐를 만나서 함께 놀기도 했어요. 집에 와서는 배불리 밥을 먹고
+                            기분 좋게 낮잠을 잤네요. 오늘도 행복한 하루였어요! 🐾
+                        </p>
+                        <div class="diary-tags">
+                            <span class="tag"><i class="fas fa-tag"></i> 산책</span>
+                            <span class="tag"><i class="fas fa-tag"></i> 친구</span>
+                            <span class="tag"><i class="fas fa-tag"></i> 행복</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diary-entry">
+                    <div class="diary-header">
+                        <div class="diary-date">
+                            <div class="date-box">
+                                <span class="day">02</span>
+                                <span class="month">2월</span>
+                            </div>
+                        </div>
+                        <div class="diary-meta">
+                            <h3>미용하는 날</h3>
+                            <span class="diary-weather">
+                                <i class="fas fa-cloud"></i> 흐림 / 3°C
+                            </span>
+                        </div>
+                    </div>
+                    <div class="diary-content">
+                        <p>
+                            오늘은 미용실에 다녀왔어요. 처음엔 조금 긴장했지만 미용사 언니가 잘 해주셔서
+                            편안하게 미용을 마쳤답니다. 깔끔하게 정리된 털이 너무 마음에 들어요!
+                            집에 오니까 가족들이 모두 예쁘다고 칭찬해주셨어요. 기분이 좋네요! ✨
+                        </p>
+                        <div class="diary-tags">
+                            <span class="tag"><i class="fas fa-tag"></i> 미용</span>
+                            <span class="tag"><i class="fas fa-tag"></i> 칭찬</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diary-entry">
+                    <div class="diary-header">
+                        <div class="diary-date">
+                            <div class="date-box">
+                                <span class="day">28</span>
+                                <span class="month">1월</span>
+                            </div>
+                        </div>
+                        <div class="diary-meta">
+                            <h3>새로운 장난감</h3>
+                            <span class="diary-weather">
+                                <i class="fas fa-snowflake"></i> 눈 / -2°C
+                            </span>
+                        </div>
+                    </div>
+                    <div class="diary-content">
+                        <p>
+                            오늘 새로운 장난감을 선물 받았어요! 삑삑 소리가 나는 공인데 너무 재미있어요.
+                            하루 종일 물고 다니면서 놀았답니다. 눈도 내렸는데 창밖을 보면서
+                            신기해했어요. 내일은 눈밭에서 놀 수 있을까요? 🎾
+                        </p>
+                        <div class="diary-tags">
+                            <span class="tag"><i class="fas fa-tag"></i> 장난감</span>
+                            <span class="tag"><i class="fas fa-tag"></i> 놀이</span>
+                            <span class="tag"><i class="fas fa-tag"></i> 눈</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+<button class="btn-secondary" id="newDiaryBtn">
+                    <i class="fas fa-plus"></i> 새 일기 작성
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 일기 작성 모달 -->
+    <div id="diaryModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-pen"></i> 새 일기 작성</h3>
+                <button class="modal-close" id="closeDiaryModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="diaryTitle"><i class="fas fa-heading"></i> 제목</label>
+                    <input type="text" id="diaryTitle" placeholder="일기 제목을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="diaryDate"><i class="fas fa-calendar"></i> 날짜</label>
+                    <input type="date" id="diaryDate">
+                </div>
+                <div class="form-group">
+                    <label for="diaryWeather"><i class="fas fa-cloud-sun"></i> 날씨</label>
+                    <select id="diaryWeather">
+                        <option value="">선택하세요</option>
+                        <option value="sunny">☀️ 맑음</option>
+                        <option value="cloudy">☁️ 흐림</option>
+                        <option value="rainy">🌧️ 비</option>
+                        <option value="snowy">❄️ 눈</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="diaryContent"><i class="fas fa-book"></i> 내용</label>
+                    <textarea id="diaryContent" rows="8" placeholder="오늘의 일기를 작성하세요..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="diaryTags"><i class="fas fa-tags"></i> 태그 (쉼표로 구분)</label>
+                    <input type="text" id="diaryTags" placeholder="예: 산책, 간식, 놀이">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelDiary">취소</button>
+                <button class="btn-primary" id="saveDiary">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 일정 섹션 -->
+    <section id="schedule" class="schedule-section">
+        <div class="container">
+            <h2 class="section-title">일정 관리</h2>
+            
+            <div class="schedule-grid">
+                <div class="schedule-upcoming">
+                    <h3><i class="fas fa-clock"></i> 다가오는 일정</h3>
+                    <div class="schedule-list">
+                        <div class="schedule-item upcoming">
+                            <div class="schedule-icon">
+                                <i class="fas fa-syringe"></i>
+                            </div>
+                            <div class="schedule-info">
+                                <h4>예방접종</h4>
+                                <p>2024년 2월 10일 (토) 오후 2시</p>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> 행복 동물병원</span>
+                            </div>
+                            <span class="schedule-badge urgent">D-6</span>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-icon">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            <div class="schedule-info">
+                                <h4>미용 예약</h4>
+                                <p>2024년 2월 15일 (목) 오전 11시</p>
+                                <span class="location"><i class="fas fa-map-marker-alt"></i> 강아지 미용실</span>
+                            </div>
+                            <span class="schedule-badge">D-11</span>
+                        </div>
+
+                        <div class="schedule-item">
+                            <div class="schedule-icon">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div class="schedule-info">
+                                <h4>김치 생일</h4>
+                                <p>2024년 3월 15일 (금)</p>
+                                <span class="location"><i class="fas fa-gift"></i> 5번째 생일!</span>
+                            </div>
+                            <span class="schedule-badge special">D-40</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-calendar">
+                    <h3><i class="fas fa-calendar"></i> 2월 캘린더</h3>
+                    <div class="mini-calendar">
+                        <div class="calendar-header">
+                            <button class="btn-icon"><i class="fas fa-chevron-left"></i></button>
+                            <span>2024년 2월</span>
+                            <button class="btn-icon"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day-name">일</div>
+                            <div class="calendar-day-name">월</div>
+                            <div class="calendar-day-name">화</div>
+                            <div class="calendar-day-name">수</div>
+                            <div class="calendar-day-name">목</div>
+                            <div class="calendar-day-name">금</div>
+                            <div class="calendar-day-name">토</div>
+                            
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day">1</div>
+                            <div class="calendar-day">2</div>
+                            <div class="calendar-day">3</div>
+                            <div class="calendar-day today">4</div>
+                            <div class="calendar-day">5</div>
+                            <div class="calendar-day">6</div>
+                            <div class="calendar-day">7</div>
+                            <div class="calendar-day">8</div>
+                            <div class="calendar-day">9</div>
+                            <div class="calendar-day event">10</div>
+                            <div class="calendar-day">11</div>
+                            <div class="calendar-day">12</div>
+                            <div class="calendar-day">13</div>
+                            <div class="calendar-day">14</div>
+                            <div class="calendar-day event">15</div>
+                            <div class="calendar-day">16</div>
+                            <div class="calendar-day">17</div>
+                            <div class="calendar-day">18</div>
+                            <div class="calendar-day">19</div>
+                            <div class="calendar-day">20</div>
+                            <div class="calendar-day">21</div>
+                            <div class="calendar-day">22</div>
+                            <div class="calendar-day">23</div>
+                            <div class="calendar-day">24</div>
+                            <div class="calendar-day">25</div>
+                            <div class="calendar-day">26</div>
+                            <div class="calendar-day">27</div>
+                            <div class="calendar-day">28</div>
+                            <div class="calendar-day">29</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn-primary">
+                    <i class="fas fa-plus"></i> 새 일정 추가
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 건강기록 섹션 -->
+    <section id="health" class="health-section">
+        <div class="container">
+            <h2 class="section-title">건강 기록</h2>
+            
+            <div class="health-overview">
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-weight-scale"></i>
+                    </div>
+                    <div class="health-info">
+                        <h4>체중</h4>
+                        <p class="health-value">3.5 <span>kg</span></p>
+                        <span class="health-status good">정상 범위</span>
+                    </div>
+                </div>
+
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <div class="health-info">
+                        <h4>마지막 검진</h4>
+                        <p class="health-value">2024.01.15</p>
+                        <span class="health-status good">건강 양호</span>
+                    </div>
+                </div>
+
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <div class="health-info">
+                        <h4>예방접종</h4>
+                        <p class="health-value">2024.02.10</p>
+                        <span class="health-status upcoming">예정</span>
+                    </div>
+                </div>
+
+                <div class="health-card">
+                    <div class="health-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="health-info">
+                        <h4>투약 중</h4>
+                        <p class="health-value">없음</p>
+                        <span class="health-status good">양호</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="health-records">
+                <h3>상세 기록</h3>
+                <div class="records-table">
+                    <div class="record-item">
+                        <div class="record-date">2024.01.15</div>
+                        <div class="record-type">
+                            <i class="fas fa-stethoscope"></i> 정기 검진
+                        </div>
+                        <div class="record-details">
+                            전체적인 건강 상태 양호. 체중 정상 범위. 치아 상태 좋음.
+                        </div>
+                        <div class="record-hospital">행복 동물병원</div>
+                    </div>
+
+                    <div class="record-item">
+                        <div class="record-date">2023.11.20</div>
+                        <div class="record-type">
+                            <i class="fas fa-syringe"></i> 예방접종
+                        </div>
+                        <div class="record-details">
+                            종합 백신 접종 완료. 부작용 없음.
+                        </div>
+                        <div class="record-hospital">행복 동물병원</div>
+                    </div>
+
+                    <div class="record-item">
+                        <div class="record-date">2023.08.10</div>
+                        <div class="record-type">
+                            <i class="fas fa-tooth"></i> 치과
+                        </div>
+                        <div class="record-details">
+                            스케일링 완료. 치석 제거. 치아 건강 양호.
+                        </div>
+                        <div class="record-hospital">반려동물 치과</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn-secondary">
+                    <i class="fas fa-plus"></i> 건강 기록 추가
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Kimchi's World</h4>
+                    <p>사랑스러운 말티즈 김치의 일상</p>
+                </div>
+                <div class="footer-section">
+                    <h4>바로가기</h4>
+                    <ul>
+                        <li><a href="kimchi-home.html">홈</a></li>
+                        <li><a href="kimchi-history.html">김치의 역사</a></li>
+                        <li><a href="kimchi-gallery.html">갤러리</a></li>
+                        <li><a href="kimchi-daily.html">일상</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>연락처</h4>
+                    <p><i class="fas fa-envelope"></i> kimchi@example.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kimchi's World. Made with <i class="fas fa-heart"></i> for Kimchi</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/kimchi-script.js"></script>
+    <script src="js/kimchi-daily.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>업로드 필드 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-box {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .result {
+            background: white;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 업로드 필드 테스트</h1>
+
+    <div class="test-box">
+        <h2>갤러리 페이지와 동일한 폼</h2>
+        
+        <label>제목:</label>
+        <input type="text" id="photoTitle" placeholder="사진/영상 제목을 입력하세요" value="테스트 제목">
+        
+        <label>촬영 날짜:</label>
+        <input type="date" id="photoDate">
+        
+        <label>카테고리:</label>
+        <select id="photoCategory">
+            <option value="">선택하세요</option>
+            <option value="daily">일상</option>
+            <option value="grooming">미용사진</option>
+            <option value="travel">여행</option>
+            <option value="friends">친구들</option>
+            <option value="special">특별한 날</option>
+        </select>
+        
+        <label>설명:</label>
+        <textarea id="photoDescription" rows="4" placeholder="이 사진/영상에 대한 설명을 입력하세요">테스트 설명</textarea>
+        
+        <br><br>
+        <button onclick="checkFields()">필드 값 확인</button>
+        <button onclick="testValidation()">유효성 검사 테스트</button>
+        
+        <div id="result" class="result">여기에 결과가 표시됩니다.</div>
+    </div>
+
+    <div class="test-box">
+        <h2>갤러리 페이지 열기</h2>
+        <button onclick="window.open('kimchi-gallery.html', '_blank')">새 탭에서 갤러리 열기</button>
+    </div>
+
+    <script>
+        // 날짜 기본값 설정
+        document.getElementById('photoDate').value = new Date().toISOString().split('T')[0];
+        
+        // 카테고리 기본값 설정
+        document.getElementById('photoCategory').value = 'daily';
+
+        function checkFields() {
+            const result = document.getElementById('result');
+            
+            const title = document.getElementById('photoTitle').value;
+            const date = document.getElementById('photoDate').value;
+            const category = document.getElementById('photoCategory').value;
+            const description = document.getElementById('photoDescription').value;
+            
+            const output = `
+📋 필드 값 확인:
+
+제목: "${title}"
+  - 길이: ${title.length}
+  - 비어있음: ${!title}
+  - trim 후: "${title.trim()}"
+  - trim 후 비어있음: ${!title.trim()}
+
+날짜: "${date}"
+  - 비어있음: ${!date}
+  - 타입: ${typeof date}
+
+카테고리: "${category}"
+  - 길이: ${category.length}
+  - 비어있음: ${!category}
+  - 빈 문자열: ${category === ''}
+  - 타입: ${typeof category}
+
+설명: "${description}"
+  - 길이: ${description.length}
+  - 비어있음: ${!description}
+
+✅ 모든 필드 체크:
+  - 제목 OK: ${!!(title && title.trim())}
+  - 날짜 OK: ${!!date}
+  - 카테고리 OK: ${!!(category && category !== '')}
+  - 설명 OK: ${!!description}
+            `;
+            
+            result.textContent = output;
+        }
+
+        function testValidation() {
+            const result = document.getElementById('result');
+            
+            const title = document.getElementById('photoTitle').value;
+            const date = document.getElementById('photoDate').value;
+            const category = document.getElementById('photoCategory').value;
+            const description = document.getElementById('photoDescription').value;
+            
+            let output = '🧪 유효성 검사 테스트:\n\n';
+            
+            // 제목 검사
+            if (!title || title.trim() === '') {
+                output += '❌ 제목을 입력해주세요.\n';
+            } else {
+                output += '✅ 제목: OK\n';
+            }
+            
+            // 날짜 검사
+            if (!date) {
+                output += '❌ 촬영 날짜를 선택해주세요.\n';
+            } else {
+                output += '✅ 날짜: OK\n';
+            }
+            
+            // 카테고리 검사
+            if (!category || category === '') {
+                output += '❌ 카테고리를 선택해주세요.\n';
+                output += `   (현재 값: "${category}", 길이: ${category.length})\n`;
+            } else {
+                output += '✅ 카테고리: OK\n';
+            }
+            
+            // 파일 검사 (시뮬레이션)
+            const hasFiles = true; // 테스트를 위해 true로 설정
+            if (!hasFiles) {
+                output += '❌ 파일을 선택해주세요.\n';
+            } else {
+                output += '✅ 파일: OK (시뮬레이션)\n';
+            }
+            
+            output += '\n---\n\n';
+            
+            if (title && title.trim() && date && category && category !== '' && hasFiles) {
+                output += '🎉 모든 유효성 검사 통과!\n';
+            } else {
+                output += '⚠️ 유효성 검사 실패\n';
+            }
+            
+            result.textContent = output;
+        }
+
+        // 자동 실행
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                checkFields();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

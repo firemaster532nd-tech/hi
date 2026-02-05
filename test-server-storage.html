@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서버 저장소 테스트 - 김치 갤러리</title>
+    <link rel="stylesheet" href="css/kimchi-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .test-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .test-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+        .test-button:hover {
+            opacity: 0.9;
+        }
+        .status-box {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .info {
+            color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 서버 저장소 테스트</h1>
+        
+        <div class="test-section">
+            <h2>1. 서버 상태 확인</h2>
+            <button class="test-button" onclick="checkServerStatus()">
+                <i class="fas fa-server"></i> 서버 상태 확인
+            </button>
+            <div id="serverStatus" class="status-box">
+                대기 중...
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. 데이터 조회</h2>
+            <button class="test-button" onclick="loadPhotos()">
+                <i class="fas fa-images"></i> 사진 불러오기
+            </button>
+            <button class="test-button" onclick="loadVideos()">
+                <i class="fas fa-video"></i> 영상 불러오기
+            </button>
+            <div id="dataStatus" class="status-box">
+                대기 중...
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>3. 테스트 데이터 추가</h2>
+            <button class="test-button" onclick="addTestPhoto()">
+                <i class="fas fa-plus"></i> 테스트 사진 추가
+            </button>
+            <button class="test-button" onclick="addTestVideo()">
+                <i class="fas fa-plus"></i> 테스트 영상 추가
+            </button>
+            <div id="addStatus" class="status-box">
+                대기 중...
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>4. localStorage 초기화</h2>
+            <button class="test-button" onclick="clearLocalStorage()">
+                <i class="fas fa-trash"></i> localStorage 초기화
+            </button>
+            <div id="clearStatus" class="status-box">
+                대기 중...
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>5. 갤러리 페이지로 이동</h2>
+            <a href="kimchi-gallery.html" class="test-button" style="display: inline-block; text-decoration: none;">
+                <i class="fas fa-arrow-right"></i> 갤러리 페이지 열기
+            </a>
+            <p style="margin-top: 1rem; color: #666;">
+                ℹ️ 서버 기반 저장소를 사용하므로 모든 사용자가 동일한 데이터를 볼 수 있습니다.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin;
+
+        // 로그 출력 헬퍼
+        function log(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type;
+            element.innerHTML += `<span class="${className}">[${timestamp}] ${message}</span>\n`;
+            element.scrollTop = element.scrollHeight;
+        }
+
+        function clearLog(elementId) {
+            document.getElementById(elementId).innerHTML = '';
+        }
+
+        // 1. 서버 상태 확인
+        async function checkServerStatus() {
+            clearLog('serverStatus');
+            log('serverStatus', '서버 상태 확인 중...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/photos`);
+                if (response.ok) {
+                    log('serverStatus', '✅ 서버가 정상 작동 중입니다!', 'success');
+                    log('serverStatus', `서버 URL: ${API_BASE}`, 'info');
+                } else {
+                    log('serverStatus', `❌ 서버 오류: ${response.status}`, 'error');
+                }
+            } catch (error) {
+                log('serverStatus', `❌ 서버 연결 실패: ${error.message}`, 'error');
+            }
+        }
+
+        // 2. 데이터 조회
+        async function loadPhotos() {
+            clearLog('dataStatus');
+            log('dataStatus', '사진 데이터 불러오는 중...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/photos`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    log('dataStatus', `✅ 총 ${result.data.length}개의 사진을 불러왔습니다.`, 'success');
+                    if (result.data.length > 0) {
+                        log('dataStatus', '\n사진 목록:', 'info');
+                        result.data.forEach((photo, index) => {
+                            log('dataStatus', `  ${index + 1}. ${photo.title} (${photo.category}) - ${photo.date}`, 'info');
+                        });
+                    } else {
+                        log('dataStatus', 'ℹ️ 아직 업로드된 사진이 없습니다.', 'info');
+                    }
+                } else {
+                    log('dataStatus', `❌ 오류: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                log('dataStatus', `❌ 오류: ${error.message}`, 'error');
+            }
+        }
+
+        async function loadVideos() {
+            clearLog('dataStatus');
+            log('dataStatus', '영상 데이터 불러오는 중...', 'info');
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/videos`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    log('dataStatus', `✅ 총 ${result.data.length}개의 영상을 불러왔습니다.`, 'success');
+                    if (result.data.length > 0) {
+                        log('dataStatus', '\n영상 목록:', 'info');
+                        result.data.forEach((video, index) => {
+                            log('dataStatus', `  ${index + 1}. ${video.title} - ${video.date}`, 'info');
+                        });
+                    } else {
+                        log('dataStatus', 'ℹ️ 아직 업로드된 영상이 없습니다.', 'info');
+                    }
+                } else {
+                    log('dataStatus', `❌ 오류: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                log('dataStatus', `❌ 오류: ${error.message}`, 'error');
+            }
+        }
+
+        // 3. 테스트 데이터 추가
+        async function addTestPhoto() {
+            clearLog('addStatus');
+            log('addStatus', '테스트 사진 추가 중...', 'info');
+            
+            // 1x1 투명 PNG (Base64)
+            const testImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+            
+            const testData = {
+                title: `테스트 사진 ${new Date().toLocaleTimeString()}`,
+                date: new Date().toISOString().split('T')[0],
+                category: 'daily',
+                description: '서버 저장소 테스트용 사진입니다.',
+                dataUrl: testImage
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/api/photos`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    log('addStatus', '✅ 테스트 사진이 추가되었습니다!', 'success');
+                    log('addStatus', `ID: ${result.data.id}`, 'info');
+                    log('addStatus', `제목: ${result.data.title}`, 'info');
+                    log('addStatus', `카테고리: ${result.data.category}`, 'info');
+                    log('addStatus', '\n💡 갤러리 페이지로 이동하여 확인하세요!', 'info');
+                } else {
+                    log('addStatus', `❌ 오류: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                log('addStatus', `❌ 오류: ${error.message}`, 'error');
+            }
+        }
+
+        async function addTestVideo() {
+            clearLog('addStatus');
+            log('addStatus', '테스트 영상 추가 중...', 'info');
+            
+            // 간단한 테스트 비디오 데이터
+            const testVideo = 'data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAAIZnJlZQAAAAhtZGF0AAAA';
+            
+            const testData = {
+                title: `테스트 영상 ${new Date().toLocaleTimeString()}`,
+                date: new Date().toISOString().split('T')[0],
+                description: '서버 저장소 테스트용 영상입니다.',
+                dataUrl: testVideo
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/api/videos`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    log('addStatus', '✅ 테스트 영상이 추가되었습니다!', 'success');
+                    log('addStatus', `ID: ${result.data.id}`, 'info');
+                    log('addStatus', `제목: ${result.data.title}`, 'info');
+                    log('addStatus', '\n💡 갤러리 페이지로 이동하여 확인하세요!', 'info');
+                } else {
+                    log('addStatus', `❌ 오류: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                log('addStatus', `❌ 오류: ${error.message}`, 'error');
+            }
+        }
+
+        // 4. localStorage 초기화
+        function clearLocalStorage() {
+            clearLog('clearStatus');
+            log('clearStatus', 'localStorage 초기화 중...', 'info');
+            
+            const keys = Object.keys(localStorage);
+            const kimchiKeys = keys.filter(key => key.startsWith('kimchi'));
+            
+            if (kimchiKeys.length === 0) {
+                log('clearStatus', 'ℹ️ 초기화할 데이터가 없습니다.', 'info');
+            } else {
+                kimchiKeys.forEach(key => {
+                    localStorage.removeItem(key);
+                    log('clearStatus', `삭제됨: ${key}`, 'info');
+                });
+                log('clearStatus', `\n✅ 총 ${kimchiKeys.length}개의 localStorage 항목이 삭제되었습니다.`, 'success');
+            }
+            
+            log('clearStatus', '\n💡 이제 서버 기반 저장소를 사용합니다. localStorage는 더 이상 필요하지 않습니다.', 'info');
+        }
+
+        // 페이지 로드 시 자동 확인
+        window.addEventListener('DOMContentLoaded', () => {
+            checkServerStatus();
+        });
+    </script>
+</body>
+</html>
