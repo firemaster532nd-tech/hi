@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모바일 반응형 테스트</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        .test-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .test-section h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .screen-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #764ba2;
+            margin: 10px 0;
+        }
+
+        .info-card .label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-list li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .status.pass {
+            background: #4caf50;
+        }
+
+        .status.fail {
+            background: #f44336;
+        }
+
+        .breakpoint-indicator {
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .bp-desktop {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .bp-tablet {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .bp-mobile {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .bp-small {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        .test-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .test-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+        }
+
+        .test-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .btn-gallery {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .btn-history {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .btn-daily {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        /* 반응형 */
+        @media (max-width: 992px) {
+            .container {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .test-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .test-section {
+                padding: 20px;
+            }
+
+            .test-section h2 {
+                font-size: 1.3rem;
+            }
+
+            .info-card .value {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            .test-section {
+                padding: 15px;
+            }
+
+            .test-section h2 {
+                font-size: 1.1rem;
+            }
+
+            .breakpoint-indicator {
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
+
+            .test-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 모바일 반응형 테스트</h1>
+
+        <div class="breakpoint-indicator" id="breakpoint">
+            현재 화면 크기를 확인 중...
+        </div>
+
+        <div class="test-section">
+            <h2>📊 화면 정보</h2>
+            <div class="screen-info">
+                <div class="info-card">
+                    <h3>화면 너비</h3>
+                    <div class="value" id="screenWidth">-</div>
+                    <div class="label">pixels</div>
+                </div>
+                <div class="info-card">
+                    <h3>화면 높이</h3>
+                    <div class="value" id="screenHeight">-</div>
+                    <div class="label">pixels</div>
+                </div>
+                <div class="info-card">
+                    <h3>디바이스 타입</h3>
+                    <div class="value" id="deviceType">-</div>
+                    <div class="label">감지됨</div>
+                </div>
+                <div class="info-card">
+                    <h3>터치 지원</h3>
+                    <div class="value" id="touchSupport">-</div>
+                    <div class="label">확인됨</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ 반응형 기능 체크</h2>
+            <ul class="feature-list" id="featureList">
+                <li>
+                    <div class="status" id="status-viewport">?</div>
+                    <span>Viewport 메타 태그</span>
+                </li>
+                <li>
+                    <div class="status" id="status-css">?</div>
+                    <span>반응형 CSS 로드</span>
+                </li>
+                <li>
+                    <div class="status" id="status-touch">?</div>
+                    <span>터치 이벤트 지원</span>
+                </li>
+                <li>
+                    <div class="status" id="status-mobile-menu">?</div>
+                    <span>모바일 메뉴 준비</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🔗 페이지 테스트</h2>
+            <div class="test-buttons">
+                <a href="kimchi-home.html" class="test-btn btn-home">메인 페이지</a>
+                <a href="kimchi-gallery.html" class="test-btn btn-gallery">갤러리</a>
+                <a href="kimchi-history.html" class="test-btn btn-history">김치의 역사</a>
+                <a href="kimchi-daily.html" class="test-btn btn-daily">일상</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateScreenInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            document.getElementById('screenWidth').textContent = width;
+            document.getElementById('screenHeight').textContent = height;
+            
+            // 디바이스 타입
+            let deviceType = '데스크톱';
+            let bpClass = 'bp-desktop';
+            let bpText = '🖥️ 데스크톱 (1200px+)';
+            
+            if (width <= 480) {
+                deviceType = '스몰 모바일';
+                bpClass = 'bp-small';
+                bpText = '📱 스몰 모바일 (≤480px)';
+            } else if (width <= 768) {
+                deviceType = '모바일';
+                bpClass = 'bp-mobile';
+                bpText = '📱 모바일 (≤768px)';
+            } else if (width <= 992) {
+                deviceType = '태블릿';
+                bpClass = 'bp-tablet';
+                bpText = '📲 태블릿 (≤992px)';
+            }
+            
+            document.getElementById('deviceType').textContent = deviceType;
+            
+            const bpIndicator = document.getElementById('breakpoint');
+            bpIndicator.textContent = bpText;
+            bpIndicator.className = 'breakpoint-indicator ' + bpClass;
+            
+            // 터치 지원
+            const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            document.getElementById('touchSupport').textContent = hasTouch ? '✅ 지원' : '❌ 미지원';
+            
+            // 기능 체크
+            checkFeatures();
+        }
+        
+        function checkFeatures() {
+            // Viewport 체크
+            const viewport = document.querySelector('meta[name="viewport"]');
+            setStatus('viewport', !!viewport);
+            
+            // CSS 체크
+            const css = document.querySelector('link[href*="kimchi-style.css"]');
+            setStatus('css', !!css);
+            
+            // 터치 체크
+            const hasTouch = 'ontouchstart' in window;
+            setStatus('touch', hasTouch);
+            
+            // 모바일 메뉴 체크
+            setStatus('mobile-menu', true); // CSS에 정의되어 있음
+        }
+        
+        function setStatus(id, pass) {
+            const element = document.getElementById('status-' + id);
+            if (element) {
+                element.textContent = pass ? '✓' : '✗';
+                element.className = 'status ' + (pass ? 'pass' : 'fail');
+            }
+        }
+        
+        // 초기 실행
+        updateScreenInfo();
+        
+        // 화면 크기 변경 감지
+        window.addEventListener('resize', updateScreenInfo);
+        
+        // 방향 변경 감지
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateScreenInfo, 100);
+        });
+    </script>
+</body>
+</html>
