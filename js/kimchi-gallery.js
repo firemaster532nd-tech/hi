@@ -361,22 +361,22 @@ class GalleryManager {
     // 플레이스홀더 렌더링 (업로드된 사진이 없을 때)
     renderPlaceholders(gallery) {
         const placeholders = [
-            { category: 'daily', title: '산책하는 김치', date: '2024년 2월 1일', tall: true },
-            { category: 'travel', title: '바다에서', date: '2023년 8월 15일', tall: false },
-            { category: 'special', title: '4번째 생일', date: '2024년 3월 15일', tall: false },
-            { category: 'friends', title: '강아지 놀이터', date: '2023년 11월 20일', tall: true },
-            { category: 'daily', title: '낮잠 자는 김치', date: '2024년 1월 28일', tall: false },
-            { category: 'daily', title: '간식 먹는 김치', date: '2024년 2월 3일', tall: false },
-            { category: 'travel', title: '제주도에서', date: '2023년 10월 5일', tall: true },
+            { category: 'daily', title: '집에서 쉬는 김치', date: '2024년 2월 1일', tall: true },
+            { category: 'walk', title: '산책하는 김치', date: '2024년 1월 28일', tall: false },
             { category: 'grooming', title: '미용 후 김치', date: '2024년 1월 15일', tall: false },
+            { category: 'travel', title: '바다에서', date: '2023년 8월 15일', tall: true },
+            { category: 'special', title: '4번째 생일', date: '2024년 3월 15일', tall: false },
+            { category: 'daily', title: '낮잠 자는 김치', date: '2024년 1월 20일', tall: false },
+            { category: 'walk', title: '공원에서', date: '2023년 11월 20일', tall: true },
+            { category: 'travel', title: '제주도에서', date: '2023년 10월 5일', tall: false },
             { category: 'special', title: '특별한 순간', date: '2024년 1월 1일', tall: false }
         ];
 
         const categoryNames = {
             'daily': '일상',
+            'walk': '산책',
             'grooming': '미용사진',
             'travel': '여행',
-            'friends': '친구들',
             'special': '특별한 날'
         };
 
@@ -429,9 +429,9 @@ class GalleryManager {
 
         const categoryNames = {
             'daily': '일상',
+            'walk': '산책',
             'grooming': '미용사진',
             'travel': '여행',
-            'friends': '친구들',
             'special': '특별한 날'
         };
 
