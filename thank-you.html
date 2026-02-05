@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의 접수 완료 | EZ Solution 내화채움공사</title>
+    <meta name="description" content="문의해 주셔서 감사합니다. 빠른 시일 내에 연락드리겠습니다.">
+    <link rel="icon" type="image/png" href="ez-solution-logo.png">
+    <link rel="apple-touch-icon" href="ez-solution-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .thank-you-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6b0f0f 100%);
+            padding: 2rem;
+        }
+        
+        .thank-you-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .check-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: checkPop 0.6s ease-out 0.3s both;
+        }
+        
+        @keyframes checkPop {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .check-icon svg {
+            width: 50px;
+            height: 50px;
+            stroke: white;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        
+        .thank-you-card h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+        
+        .thank-you-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .info-box {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .info-box h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-box li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+        }
+        
+        .info-box li::before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-home:hover {
+            background: #6b0f0f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 26, 26, 0.3);
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--light-color);
+        }
+        
+        .contact-details {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light-color);
+        }
+        
+        .contact-details h4 {
+            color: var(--dark-color);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-details p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-details a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .thank-you-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .thank-you-card h1 {
+                font-size: 1.5rem;
+            }
+            
+            .thank-you-card p {
+                font-size: 1rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn-home, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="thank-you-card">
+            <div class="check-icon">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            
+            <h1>문의가 성공적으로 접수되었습니다!</h1>
+            <p>
+                귀중한 시간을 내어 문의해 주셔서 진심으로 감사드립니다.<br>
+                담당자가 빠른 시일 내에 연락드리겠습니다.
+            </p>
+            
+            <div class="info-box">
+                <h3>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4M12 8h.01"></path>
+                    </svg>
+                    다음 단계
+                </h3>
+                <ul>
+                    <li>입력하신 이메일로 자동 확인 메일이 발송됩니다</li>
+                    <li>담당자가 영업일 기준 1-2일 내로 연락드립니다</li>
+                    <li>급한 문의사항은 대표전화로 연락 부탁드립니다</li>
+                </ul>
+            </div>
+            
+            <div class="button-group">
+                <a href="index.html" class="btn-home">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    홈으로 돌아가기
+                </a>
+                <a href="portfolio.html" class="btn-secondary">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                    </svg>
+                    시공사례 보기
+                </a>
+            </div>
+            
+            <div class="contact-details">
+                <h4>📞 긴급 문의</h4>
+                <p>
+                    대표전화: <a href="tel:070-6455-0300">070-6455-0300</a><br>
+                    이메일: <a href="mailto:firemaster532nd@gmail.com">firemaster532nd@gmail.com</a>
+                </p>
+                <p style="font-size: 0.85rem; color: #999; margin-top: 1rem;">
+                    평일 09:00 - 18:00 | 토요일 09:00 - 13:00 (일요일 휴무)
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 5초 후 자동으로 홈페이지로 리다이렉트 (선택사항)
+        // setTimeout(() => {
+        //     window.location.href = 'index.html';
+        // }, 5000);
+    </script>
+</body>
+</html>
