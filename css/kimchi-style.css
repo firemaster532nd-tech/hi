@@ -2220,3 +2220,468 @@ body {
     will-change: opacity;
 }
 
+/* ===== 모바일 메뉴 토글 버튼 ===== */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* ===== 포괄적인 반응형 디자인 ===== */
+
+/* 태블릿 (992px 이하) */
+@media (max-width: 992px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* 네비게이션 */
+    .main-nav ul {
+        gap: 1rem;
+    }
+    
+    .main-nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* 히어로 섹션 */
+    .hero-text h2 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
+    }
+    
+    /* 프로필 카드 */
+    .profile-card {
+        padding: 1.5rem;
+    }
+    
+    .profile-details {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    /* 갤러리 그리드 */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .recent-gallery .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* 비디오 그리드 */
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    /* 타임라인 */
+    .timeline-item {
+        padding-left: 2rem;
+    }
+    
+    .timeline-item::before {
+        left: 0;
+    }
+    
+    /* 하이라이트 */
+    .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 모바일 (768px 이하) */
+@media (max-width: 768px) {
+    /* 헤더 */
+    .header-content {
+        padding: 0.75rem 0;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo i {
+        font-size: 1.5rem;
+    }
+    
+    /* 모바일 메뉴 */
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        box-shadow: var(--shadow-lg);
+        animation: slideDown 0.3s ease;
+    }
+    
+    .main-nav.active {
+        display: block;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+    }
+    
+    .main-nav a {
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        display: block;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* 히어로 섹션 */
+    .hero-section {
+        padding: 2rem 0;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    /* 이미지 슬라이더 */
+    .image-slider {
+        max-width: 250px;
+        height: 250px;
+    }
+    
+    .slider-dots {
+        bottom: -30px;
+        gap: 8px;
+    }
+    
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+    
+    /* 프로필 카드 */
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .profile-image {
+        margin: 0 auto 1.5rem;
+    }
+    
+    .profile-details {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 최근 사진 섹션 */
+    .recent-gallery .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    /* 갤러리 그리드 */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .gallery-item img {
+        height: 220px;
+    }
+    
+    /* 비디오 그리드 */
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* 페이지네이션 */
+    .pagination {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+    }
+    
+    .page-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    /* 필터 버튼 */
+    .filter-buttons {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* 업로드 섹션 */
+    .upload-section {
+        padding: 2rem 0;
+    }
+    
+    .upload-box {
+        padding: 2rem 1rem;
+    }
+    
+    .upload-form {
+        gap: 1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 1rem;
+    }
+    
+    /* 타임라인 */
+    .timeline {
+        padding: 2rem 0;
+    }
+    
+    .timeline-item {
+        padding-left: 1.5rem;
+    }
+    
+    .timeline-item::before {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-images {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 하이라이트 */
+    .highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* 푸터 */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    /* 일상 페이지 */
+    .diary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .schedule-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 건강 기록 */
+    .record-item {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 소개 페이지 */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .about-image {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+    /* 헤더 */
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    .logo i {
+        font-size: 1.3rem;
+    }
+    
+    /* 히어로 섹션 */
+    .hero-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 0.95rem;
+    }
+    
+    .cta-button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    /* 이미지 슬라이더 */
+    .image-slider {
+        max-width: 200px;
+        height: 200px;
+    }
+    
+    /* 섹션 타이틀 */
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    /* 최근 사진 */
+    .recent-gallery .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 갤러리 아이템 */
+    .gallery-item img {
+        height: 200px;
+    }
+    
+    /* 프로필 카드 */
+    .profile-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .profile-details span {
+        font-size: 0.9rem;
+    }
+    
+    /* 업로드 박스 */
+    .upload-box {
+        padding: 1.5rem 0.8rem;
+    }
+    
+    .upload-icon {
+        font-size: 2.5rem;
+    }
+    
+    /* 버튼 */
+    button {
+        font-size: 0.9rem;
+    }
+    
+    /* 타임라인 */
+    .timeline-content h3 {
+        font-size: 1rem;
+    }
+    
+    .timeline-content p {
+        font-size: 0.9rem;
+    }
+    
+    /* 페이지네이션 */
+    .page-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* 가로 모드 모바일 */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-section {
+        padding: 1.5rem 0;
+    }
+    
+    .hero-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .image-slider {
+        max-width: 180px;
+        height: 180px;
+    }
+    
+    .profile-card {
+        flex-direction: row;
+    }
+}
+
+/* 터치 디바이스 최적화 */
+@media (hover: none) and (pointer: coarse) {
+    /* 모바일/터치 디바이스에서 호버 효과를 탭으로 */
+    .gallery-actions {
+        opacity: 1;
+    }
+    
+    .gallery-item,
+    .video-item,
+    .highlight-card,
+    .timeline-item {
+        cursor: pointer;
+    }
+    
+    /* 버튼 터치 영역 확대 */
+    button,
+    a,
+    .filter-btn,
+    .page-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .action-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
+
